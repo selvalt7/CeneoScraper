@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
   <title>Ceneo.pl web scraper</title>
+  <style>
+    /* Ensure the footer stays at the bottom */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex: 1;
+    }
+  </style>
 </head>
 <body>
   <header class="bg-dark text-white p-3">
@@ -36,27 +47,22 @@
       </div>
     </div>
   </nav>
-  <section class="container">
-    <div class="row">
-      <h2 class="col text-center">
-        {% block title %}
-        {% endblock %}
-      </h2>
-    </div>
-    <div class="row">
-      <div class="col">
-        {% block content %}
-        {% endblock %}
+  <main class="container">
+    <section>
+      <div class="row">
+        <h2 class="col text-center">
+          {% block title %}
+          {% endblock %}
+        </h2>
       </div>
-    </div>
-  </section>
-  <!-- <section class="container mt-4">
-    <h2>O projekcie</h2>
-    <p>Cel aplikacji: Automatyczne pobieranie opinii o produktach z serwisu Ceneo.pl.</p>
-    <p>Opis działania aplikacji: Użytkownik może wprowadzić identyfikator produktu, aby pobrać opinie, przeglądać listę produktów oraz analizować dane w formie tabel i wykresów.</p>
-    <p>Zastosowane biblioteki: Flask, Bootstrap, Pandas, Matplotlib.</p>
-    <p>Zastosowane podejścia: REST API, dynamiczne generowanie stron HTML, analiza danych.</p>
-  </section> -->
+      <div class="row">
+        <div class="col">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+    </section>
+  </main>
   <footer class="bg-dark text-white text-center p-3 mt-4">
     <p>&copy; 2025 Stanisław Krzeptowski</p>
   </footer>
