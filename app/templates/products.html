@@ -32,6 +32,11 @@ Lista produktów
         <td>{{ product['pros_count'] }}</td>
         <td>{{ product['cons_count'] }}</td>
         <td>{{ product['average_stars'] | round(2) }}</td>
+        <td>
+          <a href="{{ url_for('download_file', product_id=product['product_id'], file_type='csv') }}" class="btn btn-sm btn-primary">CSV</a>
+          <a href="{{ url_for('download_file', product_id=product['product_id'], file_type='xlsx') }}" class="btn btn-sm btn-success">XLSX</a>
+          <a href="{{ url_for('download_file', product_id=product['product_id'], file_type='json') }}" class="btn btn-sm btn-warning">JSON</a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+Opinie o produkcie {{ product_id }}
+{% endblock %}
+
+{% block content %}
+
+{% if error %}
+<p>{{error}}</p>
+{% else %}
+<div class="container mt-4">
+  <!-- Przyciski pobierania -->
+  <div class="mb-3">
+    <a href="{{ url_for('download_file', product_id=product_id, file_type='csv') }}" class="btn btn-primary">Pobierz CSV</a>
+    <a href="{{ url_for('download_file', product_id=product_id, file_type='xlsx') }}" class="btn btn-success">Pobierz XLSX</a>
+    <a href="{{ url_for('download_file', product_id=product_id, file_type='json') }}" class="btn btn-warning">Pobierz JSON</a>
+  </div>
+
+  <!-- Karty opinii -->
+  <div class="row">
+    {% for opinion in opinions %}
+    <div class="col-md-6 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <strong>Autor:</strong> {{ opinion['author'] }} | <strong>Rekomendacja:</strong> {{ opinion['recommendation'] }}
+        </div>
+        <div class="card-body">
+          <p><strong>Identyfikator:</strong> {{ opinion['opinion_id'] }}</p>
+          <p><strong>Liczba gwiazdek:</strong> {{ opinion['stars'] }}</p>
+          <p><strong>Data wystawienia:</strong> {{ opinion['post_date'] }}</p>
+          <p><strong>Data zakupu:</strong> {{ opinion['purchase_date'] }}</p>
+          <p><strong>Przydatne:</strong> {{ opinion['useful'] }}</p>
+          <p><strong>Nieprzydatne:</strong> {{ opinion['useless'] }}</p>
+          <p><strong>Treść:</strong> {{ opinion['content'] }}</p>
+          <p><strong>Zalety:</strong> {{ opinion['pros'] | join(', ') }}</p>
+          <p><strong>Wady:</strong> {{ opinion['cons'] | join(', ') }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+{% endblock %}
